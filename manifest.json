@@ -1,0 +1,14 @@
+{
+  "domain": "venta",
+  "name": "venta",
+  "config_flow": false,
+  "version": "1.0.0",
+  "documentation": "https://www.home-assistant.io/integrations/venta",
+  "requirements": ["ventaapi==1.0.0"],
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": ["@vs-x"],
+  "iot_class": "local_polling"
+}
