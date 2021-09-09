@@ -14,6 +14,7 @@ from homeassistant.const import (
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType
+from homeassistant.helpers.device_registry import format_mac
 from homeassistant.const import CONF_HOST
 
 
@@ -42,15 +43,15 @@ class TemperatureSensor(SensorEntity):
         """Initialize the sensor."""
         self._humidifier = humidifier
         self._attr_device_class = DEVICE_CLASS_TEMPERATURE
-        self._attr_name = "Temperature"
+        self._attr_name = "Venta temperature"
         self._attr_native_unit_of_measurement = TEMP_CELSIUS
         self._attr_native_value = humidifier.temperature
         self._attr_state_class = STATE_CLASS_MEASUREMENT
-        self._attr_unique_id = "venta_temperature"
+        self._attr_unique_id = f"{format_mac(humidifier.mac)}_venta_temp"
 
         self._attr_device_info = {
             "identifiers": {("Venta", "venta_temperature")},
-            "name": "Temperature",
+            "name": "Venta Temperature",
         }
 
     def update(self):
@@ -66,15 +67,15 @@ class HumiditySensor(SensorEntity):
         """Initialize the sensor."""
         self._humidifier = humidifier
         self._attr_device_class = DEVICE_CLASS_HUMIDITY
-        self._attr_name = "Humidity"
+        self._attr_name = "Venta humidity"
         self._attr_native_unit_of_measurement = PERCENTAGE
         self._attr_native_value = humidifier.humidity
         self._attr_state_class = STATE_CLASS_MEASUREMENT
-        self._attr_unique_id = "venta_humidity"
+        self._attr_unique_id = f"{format_mac(humidifier.mac)}_venta_humidity"
 
         self._attr_device_info = {
             "identifiers": {("Venta", "venta_humidity")},
-            "name": "Humidity",
+            "name": "Venta Humidity",
         }
 
     def update(self):
